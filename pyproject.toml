@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "emoji-shortname"
+version = "0.1.0"
+description = "Replace emoji short names with their corresponding emojis."
+authors = ["Nick Phair"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+emoji = "^1.2.0"
+Sphinx = "^4.1.0"
+importlib-metadata = {version = "^4.6.1", python = "~3.7"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+isort = "^5.9.2"
+black = "^21.6b0"
+tox = "^3.24.0"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist =
+    py{39, 38, 37}
+isolated_build = true
+minversion = 3.4.0
+
+[testenv]
+commands =
+    poetry install -v
+    poetry run pytest tests
+whitelist_externals = poetry
+
+[testenv:py39-style]
+description =
+    Run style checks.
+commands =
+    poetry run isort --check --diff src tests
+    poetry run black --check src tests
+
+[tox:.package]
+basepython = python3
+"""

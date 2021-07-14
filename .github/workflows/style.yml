@@ -1,0 +1,23 @@
+name: style
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: abatilo/actions-poetry@v2.1.2
+        with:
+          poetry-version: 1.1.6
+      - run: poetry install
+      - run: poetry run tox -e py39-style pyproject.toml
+

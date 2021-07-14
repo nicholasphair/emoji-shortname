@@ -1,0 +1,1 @@
+extensions = ["emoji_shortname"]
