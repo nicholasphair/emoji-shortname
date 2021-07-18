@@ -4,7 +4,7 @@
 
 
 # emoji-shortname
-Replace emoji short names with their corresponding emojis.
+Replace emoji short names with their corresponding emojis in Sphinx documentation.
 
 ## Overview
 The short names we are familiar with (e.g. the ones used on sites like GitHub)
